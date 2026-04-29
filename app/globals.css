@@ -1,0 +1,422 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Sen:wght@400..800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --ink: #1a1a1a;
+  --rose: #ff9b9b;
+  --gold: #c5a059;
+  --button: #ff9b9b;
+  --button-hover: #ff9b9b;
+  --button-shadow: #ff9b9b;
+  --surface: #ffffff;
+  --line: rgba(0, 0, 0, 0.08);
+  --soft-shadow: 0 18px 48px rgba(26, 26, 26, 0.08);
+  --deep-shadow: 0 32px 90px rgba(26, 26, 26, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family: "Sen", Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.font-display {
+  font-family: "Cormorant", Georgia, serif;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.glass-nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nav-link {
+  position: relative;
+  overflow: hidden;
+  padding: 5px 0;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-luxe {
+  position: relative;
+  padding: 16px 38px;
+  border: 1px solid var(--button);
+  background: var(--button);
+  color: #ffffff;
+  box-shadow: 4px 4px 0 var(--button-shadow);
+  cursor: pointer;
+  overflow: visible;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.36em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    background 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    color 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-luxe::before,
+.btn-luxe::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-color: #ffffff;
+  border-style: solid;
+  opacity: 0.82;
+  transition: all 0.5s ease;
+}
+
+.btn-luxe::before {
+  top: -2px;
+  left: -2px;
+  border-width: 1px 0 0 1px;
+}
+
+.btn-luxe::after {
+  right: -2px;
+  bottom: -2px;
+  border-width: 0 1px 1px 0;
+}
+
+.btn-luxe:hover {
+  transform: translate(-4px, -4px);
+  border-color: var(--rose);
+  background: #ffffff;
+  color: var(--rose);
+  box-shadow: 8px 8px 0 var(--button-shadow);
+}
+
+.btn-luxe:hover::before,
+.btn-luxe:hover::after {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.btn-secondary {
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  padding-bottom: 6px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease,
+    padding-left 0.4s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  padding-left: 10px;
+}
+
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+}
+
+.hero-slide-bg {
+  filter: contrast(1.08) brightness(0.9);
+}
+
+.line-accent {
+  position: relative;
+}
+
+.pagination-container {
+  position: absolute;
+  top: 50%;
+  right: 4vw;
+  z-index: 30;
+  transform: translateY(-50%);
+}
+
+.pagination-dot {
+  position: relative;
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 15px 0;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  transition: all 0.5s ease;
+}
+
+.pagination-dot.active {
+  height: 40px;
+  border-color: var(--gold);
+  background: var(--gold);
+}
+
+.pagination-dot::before {
+  content: attr(data-label);
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  pointer-events: none;
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  opacity: 0;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.pagination-dot:hover::before {
+  opacity: 1;
+}
+
+.image-sheen::before,
+.luxury-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 10;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+}
+
+.image-sheen:hover::before,
+.luxury-card:hover::before {
+  left: 120%;
+}
+
+.testimonial-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(197, 160, 89, 0.7) transparent;
+}
+
+.testimonial-card {
+  position: relative;
+  width: min(380px, 82vw);
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 40px;
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    transform 0.5s ease;
+}
+
+.testimonial-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gold);
+  transform: scaleY(0.32);
+  transform-origin: top;
+  transition: transform 0.6s ease;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(197, 160, 89, 0.24);
+  background: rgba(0, 0, 0, 0.045);
+  transform: translateY(-4px);
+}
+
+.testimonial-card:hover::before {
+  transform: scaleY(1);
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  color: var(--gold);
+  font-family: "Cormorant", Georgia, serif;
+  font-size: 56px;
+  line-height: 1;
+  opacity: 0.18;
+}
+
+.client-avatar {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #000000;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    filter 0.45s ease;
+  box-shadow: var(--soft-shadow);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-3d:hover {
+    transform: perspective(1200px) rotateX(4deg) rotateY(-4deg) translateY(-8px);
+    box-shadow: var(--deep-shadow);
+    filter: saturate(1.04);
+  }
+}
+
+.hero-card-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.hero-showcase-3d {
+  perspective: 1400px;
+  animation: hero-card-float 7s ease-in-out infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-card-3d:hover {
+    transform: perspective(1400px) rotateX(10deg) rotateY(-12deg) translateY(-10px) !important;
+    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.24);
+  }
+}
+
+.btn-3d {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.btn-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+}
+
+.luxury-panel {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 246, 247, 0.86)),
+    var(--surface);
+  box-shadow: var(--soft-shadow);
+}
+
+@keyframes hero-card-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+.focus-ring {
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.focus-ring:focus-visible {
+  border-color: rgba(0, 0, 0, 0.34);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 640px) {
+  .btn-luxe {
+    padding: 14px 24px;
+    letter-spacing: 0.28em;
+  }
+
+  .testimonial-card {
+    padding: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
